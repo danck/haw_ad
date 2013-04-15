@@ -18,8 +18,13 @@ public class Start {
 			e.printStackTrace();
 		}
 		
-		SequenceSort.maxteilsumme2(new int[]{1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2});
-		SequenceSort.maxteilsumme3(new int[]{1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2});
+		int [] folge = new int[]{1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2};
+		int [] folge2 = new int[]{1, -2 ,3};
+
+		SequenceSort.maxteilsumme2(folge);
+		SequenceSort.maxteilsumme3(folge);
+		System.out.print("\n"+SequenceSort.maxteilsummeRekursiv(folge));
+
 		
 		//System.out.println(seq);
 	}

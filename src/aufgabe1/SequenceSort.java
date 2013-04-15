@@ -53,7 +53,7 @@ public class SequenceSort {
 		
 		// Maximale Teilsumme berechnen
 		for (int i = 0; i < laenge; i++) {
-			for (int j = 0; j < laenge; j++) {
+			for (int j = i; j < laenge; j++) {
 				zugriffe++;
 				if (maxSum < erg[i][j]){
 					maxSum = erg[i][j];
@@ -71,5 +71,46 @@ public class SequenceSort {
 			System.out.print("\n");
 		}
 		System.out.println("Zugriffe: " + zugriffe);
+		System.out.println("Maximale Teilsumme: " + maxSum);
+	}
+	
+	public static int maxteilsummeRekursiv(final int[] folge){
+		int laenge = folge.length;
+		if(laenge == 1){return Math.max(folge[0], 0);}
+		int haelfte = folge.length/2;
+		int[] linkeHaelfte = new int[haelfte];
+		int[] rechteHaelfte = (laenge%2) == 0 ? new int[haelfte] : new int[haelfte+1];
+		for(int i=0; i<haelfte;i++){
+			linkeHaelfte[i]	= folge[i];
+		}
+		for(int i=haelfte; i<laenge;i++){
+			rechteHaelfte[i-haelfte] = folge[i];
+		} 
+		int rechtesRandMax = rechtesRandMax(linkeHaelfte);
+		int linkesRandMax = linkesRandMax(rechteHaelfte);
+		return Math.max(Math.max(maxteilsummeRekursiv(linkeHaelfte), maxteilsummeRekursiv(rechteHaelfte)),(rechtesRandMax+linkesRandMax));
+	}
+	
+	public static int rechtesRandMax(int[] linkeHaelfte){
+		int laenge = linkeHaelfte.length;
+		int max = linkeHaelfte[laenge-1];
+		int zwischen_sum = max;
+		if(laenge == 1){return max;}
+		for(int i = laenge-2; i>=0;i--){
+			zwischen_sum = zwischen_sum + linkeHaelfte[i];
+			max = Math.max(max, zwischen_sum);
+		}
+		return max;
+	}
+	
+	public static int linkesRandMax(int[] rechteHaelfte){
+		int laenge = rechteHaelfte.length;
+		int max = rechteHaelfte[0];
+		int zwischen_sum = max;
+		for(int i = 1; i<laenge;i++){
+			zwischen_sum = zwischen_sum + rechteHaelfte[i];
+			max = Math.max(max, zwischen_sum);
+		}
+		return max;
 	}
 }
