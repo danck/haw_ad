@@ -18,7 +18,10 @@ public class Start {
 			e.printStackTrace();
 		}
 		
-		System.out.println(seq);
+		SequenceSort.maxteilsumme2(new int[]{1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2});
+		SequenceSort.maxteilsumme3(new int[]{1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2, 1,2,3, -3, -10, 100, 2});
+		
+		//System.out.println(seq);
 	}
 
 }
