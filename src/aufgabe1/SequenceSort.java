@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SequenceSort {
 	
-	public static List<Integer> maxteilsumme3(final int[] folge){
+	public static List<Integer> maxTeilsumme3(final int[] folge){
 		int zugriffe = 0;
 		int laenge = folge.length;
 		int sum = 0;
@@ -38,9 +38,9 @@ public class SequenceSort {
 		
 	}
 	
-	public static List<Integer> maxteilsumme2(final int[] folge) {
+	public static List<Integer> maxTeilsumme2(final int[] folge) {
 		int zugriffe = 0;
-
+		int mat_zugriffe = 0;
 		int laenge = folge.length;
 		int maxSum = Integer.MIN_VALUE;
 		int von = -1;
@@ -60,7 +60,7 @@ public class SequenceSort {
 		// Maximale Teilsumme berechnen
 		for (int i = 0; i < laenge; i++) {
 			for (int j = i; j < laenge; j++) {
-				zugriffe++;
+				mat_zugriffe++;
 				if (maxSum < mat[i][j]){
 					maxSum = mat[i][j];
 					von = i;
@@ -76,6 +76,7 @@ public class SequenceSort {
 		erg.add(0); //zeit
 		erg.add(0); //zeit
 		erg.add(zugriffe);
+		erg.add(mat_zugriffe);
 		return erg;
 	}
 	
@@ -117,5 +118,30 @@ public class SequenceSort {
 			max = Math.max(max, zwischen_sum);
 		}
 		return max;
+	}
+	
+	public static List<Integer> maxTeilsumme1(final int[] folge) {
+		int zugriffe = 0;
+		int bisherMax = 0;
+		int randMax = 0;
+		int von = -1;
+		int bis = -1;
+		for (int i = 0; i < folge.length; i++) {
+			zugriffe++;
+			if(randMax+folge[i] < 0){
+				von = i+1;
+			}
+			randMax = Math.max(0, randMax + folge[i]);
+			bis = (randMax > bisherMax) ? i : bis;
+			bisherMax = Math.max(bisherMax, randMax);
+		};
+		List<Integer> erg = new ArrayList<Integer>();
+		erg.add(bisherMax);
+		erg.add(von);
+		erg.add(bis);
+		erg.add(0); //zeit
+		erg.add(0); //zeit
+		erg.add(zugriffe);
+		return erg;
 	}
 }

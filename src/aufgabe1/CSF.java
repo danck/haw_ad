@@ -12,7 +12,7 @@ public class CSF {
 		File exel = new File("./Files/maxteilsummeTest.csv");
 		this.schreiber = new FileWriter(exel);
 		schreiber.write("Anzahl;Algorithmus;maxTeilsumme;Index1;Index2;" +
-				"Zeit (inkl. Zählen);Zeit (exkl. Zählen);Summe aller Zugriffe;;\n");
+				"Zeit (inkl. Zählen);Zeit (exkl. Zählen);Summe aller Zugriffe;Matrix-Zugriffe;;\n");
 		schreiber.flush();
 	}
 	

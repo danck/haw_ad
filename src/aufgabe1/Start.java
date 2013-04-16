@@ -12,7 +12,29 @@ public class Start {
 	public static void main(String[] args) throws IOException {
 
 		CSF cfs = new CSF();
+		
 		starte(-100,100,100,cfs);
+		cfs.newLine();
+		starte(-100,100,200,cfs);
+		cfs.newLine();
+		starte(-100,100,300,cfs);
+		cfs.newLine();
+		starte(-100,100,400,cfs);
+		cfs.newLine();
+		starte(-100,100,500,cfs);
+		cfs.newLine();
+		starte(-100,100,600,cfs);
+		cfs.newLine();
+		starte(-100,100,700,cfs);
+		cfs.newLine();
+		starte(-100,100,800,cfs);
+		cfs.newLine();
+		starte(-100,100,900,cfs);
+		cfs.newLine();
+		starte(-100,100,1000,cfs);
+		
+		
+		
 		cfs.close();
 
 	}
@@ -26,7 +48,7 @@ public class Start {
 		
 		cfs.neuerEintrag(Integer.toString(folgenlaenge));
 		cfs.neuerEintrag("maxteilsumme3");
-		List<Integer> mts3 = SequenceSort.maxteilsumme3(seq);
+		List<Integer> mts3 = SequenceSort.maxTeilsumme3(seq);
 		for(Integer n: mts3){
 			cfs.neuerEintrag(n.toString());
 		}
@@ -35,13 +57,20 @@ public class Start {
 		
 		cfs.neuerEintrag(Integer.toString(folgenlaenge));
 		cfs.neuerEintrag("maxteilsumme2");
-		List<Integer> mts2 = SequenceSort.maxteilsumme2(seq);
+		List<Integer> mts2 = SequenceSort.maxTeilsumme2(seq);
 		for(Integer n: mts2){
 			cfs.neuerEintrag(n.toString());
 		}
 		
-		//SequenceSort.maxteilsummeRekursiv(seq));
 		
+		cfs.newLine();
+		
+		cfs.neuerEintrag(Integer.toString(folgenlaenge));
+		cfs.neuerEintrag("maxteilsumme1");
+		List<Integer> mts1 = SequenceSort.maxTeilsumme1(seq);
+		for(Integer n: mts1){
+			cfs.neuerEintrag(n.toString());
+		}		
 	}
 
 }
