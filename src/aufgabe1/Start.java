@@ -11,7 +11,7 @@ public class Start {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		CSF cfs = new CSF();
+		CSV cfs = new CSV();
 		
 		starte(-100,100,100,cfs);
 		cfs.newLine();
@@ -39,7 +39,7 @@ public class Start {
 
 	}
 	
-	public static void starte(int min, int max, int folgenlaenge, CSF cfs) throws IOException{
+	public static void starte(int min, int max, int folgenlaenge, CSV cfs) throws IOException{
 		
 		FolgenErzeuger folgenerzeuger = new FolgenErzeuger();
 		folgenerzeuger.zufallsFolge(min, max, folgenlaenge);

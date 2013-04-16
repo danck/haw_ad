@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CSF {
+public class CSV {
 	
 	private final FileWriter schreiber;
 
-	public CSF() throws IOException{
+	public CSV() throws IOException{
 		File exel = new File("./Files/maxteilsummeTest.csv");
 		this.schreiber = new FileWriter(exel);
 		schreiber.write("Anzahl;Algorithmus;maxTeilsumme;Index1;Index2;" +

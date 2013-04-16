@@ -128,7 +128,7 @@ public class SequenceSort {
 		int bis = -1;
 		for (int i = 0; i < folge.length; i++) {
 			zugriffe++;
-			if(randMax+folge[i] < 0){
+			if(randMax + folge[i] < 0){
 				von = i+1;
 			}
 			randMax = Math.max(0, randMax + folge[i]);
