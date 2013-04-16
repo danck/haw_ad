@@ -28,7 +28,6 @@ public class FolgenErzeuger {
 			schreiber.write(zufallszahl + " ");
 		}
 		schreiber.flush();
-		schreiber.close();
 	 }
 	
 }
