@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReaderWriter {
+public class Reader {
 	final static String delimiter = " ";
 
-	private ReaderWriter() {
+	private Reader() {
 	};
 
 	public static int[] getSequence(String path) throws IOException {
@@ -33,8 +33,5 @@ public class ReaderWriter {
 		}
 		return erg;
 	}
-	
-	public static void writeSequence(String path){
-		
-	}
+			
 }

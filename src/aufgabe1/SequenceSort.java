@@ -1,16 +1,17 @@
 package aufgabe1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SequenceSort {
 	
-	public static void maxteilsumme3(final int[] folge){
+	public static List<Integer> maxteilsumme3(final int[] folge){
 		int zugriffe = 0;
-		
 		int laenge = folge.length;
 		int sum = 0;
 		int maxSum = Integer.MIN_VALUE;
 		int von = -1;
 		int bis = -1;
-		
 		
 		for (int i = 0; i<laenge; i++){
 			for (int j = (laenge - i); j>0; j-- ){
@@ -26,20 +27,25 @@ public class SequenceSort {
 					}
 				}
 		}
+		List<Integer> erg = new ArrayList<Integer>();
+		erg.add(maxSum);
+		erg.add(von);
+		erg.add(bis);
+		erg.add(0); //zeit
+		erg.add(0); //zeit
+		erg.add(zugriffe);
+		return erg;
 		
-		System.out.println("Maxteilsummer ="+ maxSum + "\n"
-				+"von " + von + " bis "+ bis + "\n"
-				+ "Zugriffe: "+ zugriffe);
 	}
 	
-	public static void maxteilsumme2(final int[] folge) {
+	public static List<Integer> maxteilsumme2(final int[] folge) {
 		int zugriffe = 0;
 
 		int laenge = folge.length;
 		int maxSum = Integer.MIN_VALUE;
 		int von = -1;
 		int bis = -1;
-		int[][] erg = new int[laenge][laenge];
+		int[][] mat = new int[laenge][laenge];
 
 		// Teilsummen berechnen
 		for (int i = 0; i < laenge; i++) {
@@ -47,7 +53,7 @@ public class SequenceSort {
 			for (int j = i; j < laenge; j++) {
 				zugriffe++;
 				sum += (i == j) ? 0 : folge[j];
-				erg[i][j] = sum;
+				mat[i][j] = sum;
 			}
 		}
 		
@@ -55,23 +61,22 @@ public class SequenceSort {
 		for (int i = 0; i < laenge; i++) {
 			for (int j = i; j < laenge; j++) {
 				zugriffe++;
-				if (maxSum < erg[i][j]){
-					maxSum = erg[i][j];
+				if (maxSum < mat[i][j]){
+					maxSum = mat[i][j];
 					von = i;
 					bis = j;
 				}
 			}
 		}
 
-		//Ausgabe
-		for (int i = 0; i < laenge; i++) {
-			for (int j = 0; j < laenge; j++) {
-				System.out.print(erg[i][j] + " ");
-			}
-			System.out.print("\n");
-		}
-		System.out.println("Zugriffe: " + zugriffe);
-		System.out.println("Maximale Teilsumme: " + maxSum);
+		List<Integer> erg = new ArrayList<Integer>();
+		erg.add(maxSum);
+		erg.add(von);
+		erg.add(bis);
+		erg.add(0); //zeit
+		erg.add(0); //zeit
+		erg.add(zugriffe);
+		return erg;
 	}
 	
 	public static int maxteilsummeRekursiv(final int[] folge){

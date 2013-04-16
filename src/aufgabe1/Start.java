@@ -1,48 +1,47 @@
 package aufgabe1;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public class Start {
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
+		CSF cfs = new CSF();
+		starte(-100,100,100,cfs);
+		cfs.close();
+
+	}
+	
+	public static void starte(int min, int max, int folgenlaenge, CSF cfs) throws IOException{
+		
 		FolgenErzeuger folgenerzeuger = new FolgenErzeuger();
-		int folgenlaenge = 100;
-		int min = -100;
-		int max = 100;
-		try {
-			folgenerzeuger.zufallsFolge(min, max, folgenlaenge);
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		try {
-			Exel exel = new Exel();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		folgenerzeuger.zufallsFolge(min, max, folgenlaenge);
 		int[] seq = new int[folgenlaenge];
-		try {
-			seq = ReaderWriter.getSequence("./Files/folge.dat");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		seq = Reader.getSequence("./Files/folge.dat");
+		
+		cfs.neuerEintrag(Integer.toString(folgenlaenge));
+		cfs.neuerEintrag("maxteilsumme3");
+		List<Integer> mts3 = SequenceSort.maxteilsumme3(seq);
+		for(Integer n: mts3){
+			cfs.neuerEintrag(n.toString());
 		}
-
-		SequenceSort.maxteilsumme2(seq);
-		SequenceSort.maxteilsumme3(seq);
-		System.out.print("\n" + SequenceSort.maxteilsummeRekursiv(seq));
-
+		
+		cfs.newLine();
+		
+		cfs.neuerEintrag(Integer.toString(folgenlaenge));
+		cfs.neuerEintrag("maxteilsumme2");
+		List<Integer> mts2 = SequenceSort.maxteilsumme2(seq);
+		for(Integer n: mts2){
+			cfs.neuerEintrag(n.toString());
+		}
+		
+		//SequenceSort.maxteilsummeRekursiv(seq));
+		
 	}
 
 }

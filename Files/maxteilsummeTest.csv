@@ -1,0 +1,3 @@
+Anzahl;Algorithmus;maxTeilsumme;Index1;Index2;Zeit (inkl. Zählen);Zeit (exkl. Zählen);Summe aller Zugriffe;;
+100;maxteilsumme3;923;19;97;0;0;171700;
+100;maxteilsumme2;923;19;97;0;0;10100;
