@@ -13,7 +13,7 @@ public class ReaderWriter {
 	private ReaderWriter() {
 	};
 
-	public static List<Integer> getSequence(String path) throws IOException {
+	public static int[] getSequence(String path) throws IOException {
 		List<Integer> sequence = new ArrayList<Integer>();
 		String temp = new String();
 
@@ -27,7 +27,11 @@ public class ReaderWriter {
 		}
 
 		input.close();
-		return sequence;
+		int[] erg = new int[sequence.size()];
+		for(int i=0;i<sequence.size();i++){
+			erg[i] = sequence.get(i);
+		}
+		return erg;
 	}
 	
 	public static void writeSequence(String path){
