@@ -11,66 +11,89 @@ public class Start {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		CSV cfs = new CSV();
+		CSV csv = new CSV();
 		
-		starte(-100,100,100,cfs);
-		cfs.newLine();
-		starte(-100,100,200,cfs);
-		cfs.newLine();
-		starte(-100,100,300,cfs);
-		cfs.newLine();
-		starte(-100,100,400,cfs);
-		cfs.newLine();
-		starte(-100,100,500,cfs);
-		cfs.newLine();
-		starte(-100,100,600,cfs);
-		cfs.newLine();
-		starte(-100,100,700,cfs);
-		cfs.newLine();
-		starte(-100,100,800,cfs);
-		cfs.newLine();
-		starte(-100,100,900,cfs);
-		cfs.newLine();
-		starte(-100,100,1000,cfs);
+		starte(-100,100,1000,csv);
+		csv.newLine();
+		starte(-100,100,2000,csv);
+		csv.newLine();
+		starte(-100,100,3000,csv);
+		csv.newLine();
+		starte(-100,100,4000,csv);
+		csv.newLine();
+		starte(-100,100,5000,csv);
+		csv.newLine();
+		starte(-100,100,6000,csv);
+		csv.newLine();
+		starte(-100,100,7000,csv);
+		csv.newLine();
+		starte(-100,100,8000,csv);
+		csv.newLine();
+		starte(-100,100,9000,csv);
+		csv.newLine();
+		starte(-100,100,10000,csv);
 		
 		
 		
-		cfs.close();
+		csv.close();
+		System.out.println("maxteilsummeTest.csv angelegt.");
 
 	}
 	
-	public static void starte(int min, int max, int folgenlaenge, CSV cfs) throws IOException{
+	public static void starte(int min, int max, int folgenlaenge, CSV csv) throws IOException{
 		
 		FolgenErzeuger folgenerzeuger = new FolgenErzeuger();
 		folgenerzeuger.zufallsFolge(min, max, folgenlaenge);
 		int[] seq = new int[folgenlaenge];
 		seq = Reader.getSequence("./Files/folge.dat");
-		
-		cfs.neuerEintrag(Integer.toString(folgenlaenge));
-		cfs.neuerEintrag("maxteilsumme3");
+				
+		csv.neuerEintrag(Integer.toString(folgenlaenge));
+		csv.neuerEintrag("maxteilsumme3");
 		List<Integer> mts3 = SequenceSort.maxTeilsumme3(seq);
 		for(Integer n: mts3){
-			cfs.neuerEintrag(n.toString());
+			csv.neuerEintrag(n.toString());
 		}
+		csv.neuerEintrag(Long.toString(SequenceSort.laufzeit));
+		SequenceSortOhneZugriffe.maxTeilsumme3(seq);
+		csv.neuerEintrag(Long.toString(SequenceSortOhneZugriffe.laufzeit));
 		
-		cfs.newLine();
+		csv.newLine();
 		
-		cfs.neuerEintrag(Integer.toString(folgenlaenge));
-		cfs.neuerEintrag("maxteilsumme2");
+		csv.neuerEintrag(Integer.toString(folgenlaenge));
+		csv.neuerEintrag("maxteilsumme2");
 		List<Integer> mts2 = SequenceSort.maxTeilsumme2(seq);
 		for(Integer n: mts2){
-			cfs.neuerEintrag(n.toString());
+			csv.neuerEintrag(n.toString());
 		}
+		csv.neuerEintrag(Long.toString(SequenceSort.laufzeit));
+		SequenceSortOhneZugriffe.maxTeilsumme2(seq);
+		csv.neuerEintrag(Long.toString(SequenceSortOhneZugriffe.laufzeit));
+		csv.neuerEintrag(Integer.toString(SequenceSort.mat_zugriffe));
+		SequenceSort.reset();
 		
+		csv.newLine();
 		
-		cfs.newLine();
+		csv.neuerEintrag(Integer.toString(folgenlaenge));
+		csv.neuerEintrag("maxteilsummeRekursiv");
+		csv.neuerEintrag(Integer.toString(SequenceSort.maxTeilsummeRekursiv(seq)));
+		csv.neuerEintrag("N/A");
+		csv.neuerEintrag("N/A");
+		csv.neuerEintrag(Integer.toString(SequenceSort.maxteilsummeRekursivZugriffe));
+		csv.neuerEintrag(Long.toString(SequenceSort.laufzeit));
+		SequenceSortOhneZugriffe.maxTeilsummeRekursiv(seq);
+		csv.neuerEintrag(Long.toString(SequenceSortOhneZugriffe.laufzeit));
 		
-		cfs.neuerEintrag(Integer.toString(folgenlaenge));
-		cfs.neuerEintrag("maxteilsumme1");
+		csv.newLine();
+		
+		csv.neuerEintrag(Integer.toString(folgenlaenge));
+		csv.neuerEintrag("maxteilsumme1");
 		List<Integer> mts1 = SequenceSort.maxTeilsumme1(seq);
 		for(Integer n: mts1){
-			cfs.neuerEintrag(n.toString());
+			csv.neuerEintrag(n.toString());
 		}		
+		csv.neuerEintrag(Long.toString(SequenceSort.laufzeit));
+		SequenceSortOhneZugriffe.maxTeilsumme1(seq);
+		csv.neuerEintrag(Long.toString(SequenceSortOhneZugriffe.laufzeit));
 	}
 
 }

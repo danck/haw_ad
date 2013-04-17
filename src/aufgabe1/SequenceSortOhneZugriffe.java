@@ -3,15 +3,12 @@ package aufgabe1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SequenceSort {
-	public static int maxteilsummeRekursivZugriffe = 0;
+public class SequenceSortOhneZugriffe {
 	public static long laufzeit = 0;
-	public static int mat_zugriffe = 0;
 	public static int von_rek;
 	public static int bis_rek;
 	
 	public static List<Integer> maxTeilsumme3(final int[] folge){
-		int zugriffe = 0;
 		int laenge = folge.length;
 		int sum = 0;
 		int maxSum = Integer.MIN_VALUE;
@@ -23,7 +20,6 @@ public class SequenceSort {
 			for (int j = (laenge - i); j>0; j-- ){
 				sum = 0;
 				for (int k = i; k<(i+j); k++ ){
-					zugriffe++;
 					sum += folge[k];
 				}
 				if (maxSum < sum){
@@ -39,13 +35,11 @@ public class SequenceSort {
 		erg.add(maxSum);
 		erg.add(von);
 		erg.add(bis);
-		erg.add(zugriffe);
 		return erg;
 		
 	}
 	
 	public static List<Integer> maxTeilsumme2(final int[] folge) {
-		int zugriffe = 0;
 		int laenge = folge.length;
 		int maxSum = Integer.MIN_VALUE;
 		int von = -1;
@@ -57,7 +51,6 @@ public class SequenceSort {
 		for (int i = 0; i < laenge; i++) {
 			int sum = folge[i];
 			for (int j = i; j < laenge; j++) {
-				zugriffe++;
 				sum += (i == j) ? 0 : folge[j];
 				mat[i][j] = sum;
 			}
@@ -66,7 +59,6 @@ public class SequenceSort {
 		// Maximale Teilsumme berechnen
 		for (int i = 0; i < laenge; i++) {
 			for (int j = i; j < laenge; j++) {
-				mat_zugriffe++;
 				if (maxSum < mat[i][j]){
 					maxSum = mat[i][j];
 					von = i;
@@ -81,7 +73,6 @@ public class SequenceSort {
 		erg.add(maxSum);
 		erg.add(von);
 		erg.add(bis);
-		erg.add(zugriffe);
 		return erg;
 	}
 	
@@ -94,18 +85,15 @@ public class SequenceSort {
 	}
 	
 	public static int maxTeilsummeRekursiv_(final int[] folge){
-		maxteilsummeRekursivZugriffe++;
 		int laenge = folge.length;
 		if(laenge == 1){return Math.max(folge[0], 0);}
 		int haelfte = folge.length/2;
 		int[] linkeHaelfte = new int[haelfte];
 		int[] rechteHaelfte = (laenge%2) == 0 ? new int[haelfte] : new int[haelfte+1];
 		for(int i=0; i<haelfte;i++){
-			maxteilsummeRekursivZugriffe++;
 			linkeHaelfte[i]	= folge[i];
 		}
 		for(int i=haelfte; i<laenge;i++){
-			maxteilsummeRekursivZugriffe++;
 			rechteHaelfte[i-haelfte] = folge[i];
 		} 
 		int rechtesRandMax = rechtesRandMax(linkeHaelfte);
@@ -119,7 +107,6 @@ public class SequenceSort {
 		int zwischen_sum = max;
 		if(laenge == 1){return max;}
 		for(int i = laenge-2; i>=0;i--){
-			maxteilsummeRekursivZugriffe++;
 			zwischen_sum = zwischen_sum + linkeHaelfte[i];
 			max = Math.max(max, zwischen_sum);
 		}
@@ -131,7 +118,6 @@ public class SequenceSort {
 		int max = rechteHaelfte[0];
 		int zwischen_sum = max;
 		for(int i = 1; i<laenge;i++){
-			maxteilsummeRekursivZugriffe++;
 			zwischen_sum = zwischen_sum + rechteHaelfte[i];
 			max = Math.max(max, zwischen_sum);
 		}
@@ -139,15 +125,13 @@ public class SequenceSort {
 	}
 		
 	public static List<Integer> maxTeilsumme1(final int[] folge) {
-		int zugriffe = 0;
 		int bisherMax = 0;
 		int randMax = 0;
 		int von = 0;
 		int bis = 0;
 		long start = System.currentTimeMillis(); 
 		for (int i = 0; i < folge.length; i++) {
-			zugriffe++;
-			if((randMax + folge[i] < 0)||(randMax > bisherMax)){
+			if((randMax + folge[i] < 0)&&(randMax > bisherMax)){
 				von = i+1;
 			}
 			randMax = Math.max(0, randMax + folge[i]);
@@ -160,11 +144,7 @@ public class SequenceSort {
 		erg.add(bisherMax);
 		erg.add(von);
 		erg.add(bis);
-		erg.add(zugriffe);
 		return erg;
 	}
-	
-	public static void reset(){
-		mat_zugriffe = 0;
-	}
+
 }
