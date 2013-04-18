@@ -13,25 +13,25 @@ public class Start {
 
 		CSV csv = new CSV();
 		
+		starte(-100,100,100,csv);
+		csv.newLine();
+		starte(-100,100,200,csv);
+		csv.newLine();
+		starte(-100,100,300,csv);
+		csv.newLine();
+		starte(-100,100,400,csv);
+		csv.newLine();
+		starte(-100,100,500,csv);
+		csv.newLine();
+		starte(-100,100,600,csv);
+		csv.newLine();
+		starte(-100,100,700,csv);
+		csv.newLine();
+		starte(-100,100,800,csv);
+		csv.newLine();
+		starte(-100,100,900,csv);
+		csv.newLine();
 		starte(-100,100,1000,csv);
-		csv.newLine();
-		starte(-100,100,2000,csv);
-		csv.newLine();
-		starte(-100,100,3000,csv);
-		csv.newLine();
-		starte(-100,100,4000,csv);
-		csv.newLine();
-		starte(-100,100,5000,csv);
-		csv.newLine();
-		starte(-100,100,6000,csv);
-		csv.newLine();
-		starte(-100,100,7000,csv);
-		csv.newLine();
-		starte(-100,100,8000,csv);
-		csv.newLine();
-		starte(-100,100,9000,csv);
-		csv.newLine();
-		starte(-100,100,10000,csv);
 		
 		
 		
@@ -46,7 +46,10 @@ public class Start {
 		folgenerzeuger.zufallsFolge(min, max, folgenlaenge);
 		int[] seq = new int[folgenlaenge];
 		seq = Reader.getSequence("./Files/folge.dat");
-				
+		
+//		int[] seq = new int[]{-10 ,86 ,83 ,-93 ,56 ,98 ,77 ,-37 ,81 ,76 ,-92 ,78 ,1 ,-52 ,-27 ,71 ,-44 ,26 ,60 ,83}; //feste folge zum debugen
+		
+		//maxteilsumme3
 		csv.neuerEintrag(Integer.toString(folgenlaenge));
 		csv.neuerEintrag("maxteilsumme3");
 		List<Integer> mts3 = SequenceSort.maxTeilsumme3(seq);
@@ -59,6 +62,7 @@ public class Start {
 		
 		csv.newLine();
 		
+		//maxteilsumme2 mit oben erzeugter Folge durchfuehren und Ergebniss in csv-Datei schreiben
 		csv.neuerEintrag(Integer.toString(folgenlaenge));
 		csv.neuerEintrag("maxteilsumme2");
 		List<Integer> mts2 = SequenceSort.maxTeilsumme2(seq);
@@ -73,11 +77,13 @@ public class Start {
 		
 		csv.newLine();
 		
+		//maxteilsummeRekursiv
 		csv.neuerEintrag(Integer.toString(folgenlaenge));
 		csv.neuerEintrag("maxteilsummeRekursiv");
-		csv.neuerEintrag(Integer.toString(SequenceSort.maxTeilsummeRekursiv(seq)));
-		csv.neuerEintrag("N/A");
-		csv.neuerEintrag("N/A");
+		List<Integer> mtr = SequenceSort.maxTeilsummeRekursiv(seq);
+		for(Integer n: mtr){
+			csv.neuerEintrag(n.toString());
+		}
 		csv.neuerEintrag(Integer.toString(SequenceSort.maxteilsummeRekursivZugriffe));
 		csv.neuerEintrag(Long.toString(SequenceSort.laufzeit));
 		SequenceSortOhneZugriffe.maxTeilsummeRekursiv(seq);
@@ -85,6 +91,7 @@ public class Start {
 		
 		csv.newLine();
 		
+		//maxteilsumme1
 		csv.neuerEintrag(Integer.toString(folgenlaenge));
 		csv.neuerEintrag("maxteilsumme1");
 		List<Integer> mts1 = SequenceSort.maxTeilsumme1(seq);

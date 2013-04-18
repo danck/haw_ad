@@ -15,7 +15,7 @@ public class SequenceSortOhneZugriffe {
 		int von = -1;
 		int bis = -1;
 		
-		long start = System.currentTimeMillis();
+		long start = System.nanoTime();
 		for (int i = 0; i<laenge; i++){
 			for (int j = (laenge - i); j>0; j-- ){
 				sum = 0;
@@ -29,8 +29,8 @@ public class SequenceSortOhneZugriffe {
 					}
 				}
 		}
-		long end = System.currentTimeMillis();
-		laufzeit = end - start;
+		long end = System.nanoTime();
+		laufzeit = (end - start)/1000000;
 		List<Integer> erg = new ArrayList<Integer>();
 		erg.add(maxSum);
 		erg.add(von);
@@ -46,7 +46,7 @@ public class SequenceSortOhneZugriffe {
 		int bis = -1;
 		int[][] mat = new int[laenge][laenge];
 
-		long start = System.currentTimeMillis();
+		long start = System.nanoTime();
 		// Teilsummen berechnen
 		for (int i = 0; i < laenge; i++) {
 			int sum = folge[i];
@@ -66,8 +66,8 @@ public class SequenceSortOhneZugriffe {
 				}
 			}
 		}
-		long end = System.currentTimeMillis();
-		laufzeit = end - start;
+		long end = System.nanoTime();
+		laufzeit = (end - start)/1000000;
 
 		List<Integer> erg = new ArrayList<Integer>();
 		erg.add(maxSum);
@@ -77,10 +77,10 @@ public class SequenceSortOhneZugriffe {
 	}
 	
 	public static int maxTeilsummeRekursiv(final int[] folge){
-		long start = System.currentTimeMillis();
+		long start = System.nanoTime();
 		int ret = maxTeilsummeRekursiv_(folge);
-		long end = System.currentTimeMillis();
-		laufzeit = end - start;
+		long end = System.nanoTime();
+		laufzeit = (end - start)/1000000;
 		return ret;
 	}
 	
@@ -129,7 +129,7 @@ public class SequenceSortOhneZugriffe {
 		int randMax = 0;
 		int von = 0;
 		int bis = 0;
-		long start = System.currentTimeMillis(); 
+		long start = System.nanoTime(); 
 		for (int i = 0; i < folge.length; i++) {
 			if((randMax + folge[i] < 0)&&(randMax > bisherMax)){
 				von = i+1;
@@ -138,8 +138,8 @@ public class SequenceSortOhneZugriffe {
 			bis = (randMax > bisherMax) ? i : bis;
 			bisherMax = Math.max(bisherMax, randMax);
 		};
-		long end = System.currentTimeMillis();
-		laufzeit = end - start; 
+		long end = System.nanoTime();
+		laufzeit = (end - start)/1000000; 
 		List<Integer> erg = new ArrayList<Integer>();
 		erg.add(bisherMax);
 		erg.add(von);
